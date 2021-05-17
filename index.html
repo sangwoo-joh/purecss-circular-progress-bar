@@ -1,55 +1,37 @@
 <html>
-<head>
-	<link href="css-circular-prog-bar.css" media="all" rel="stylesheet" />
-</head>
-<style>
-body,html {
-   font-size: 10px;
-}
-</style>
-<body>
-<p>Test Page</p>
-<div class="progress-circle p10">
-   <span>10%</span>
-   <div class="left-half-clipper">
-      <div class="first50-bar"></div>
-      <div class="value-bar"></div>
-   </div>
-</div>
-<div class="progress-circle p33">
-   <span>33%</span>
-   <div class="left-half-clipper">
-      <div class="first50-bar"></div>
-      <div class="value-bar"></div>
-   </div>
-</div>
-<div class="progress-circle over50 p66">
-   <span>66%</span>
-   <div class="left-half-clipper">
-      <div class="first50-bar"></div>
-      <div class="value-bar"></div>
-   </div>
-</div>
-<div class="progress-circle over50 p77">
-   <span>77%</span>
-   <div class="left-half-clipper">
-      <div class="first50-bar"></div>
-      <div class="value-bar"></div>
-   </div>
-</div>
-<div class="progress-circle over50 p99">
-   <span>99%</span>
-   <div class="left-half-clipper">
-      <div class="first50-bar"></div>
-      <div class="value-bar"></div>
-   </div>
-</div>
-<div class="progress-circle over50 p100">
-   <span>100%</span>
-   <div class="left-half-clipper">
-      <div class="first50-bar"></div>
-      <div class="value-bar"></div>
-   </div>
-</div>
-</body>
+  <head>
+    <link href="css-circular-prog-bar.css" media="all" rel="stylesheet" />
+  </head>
+  <style>
+   body,html {
+     font-size: 10px;
+   }
+  </style>
+  <body>
+
+    <div class="progress-circle p0" id="progress">
+      <span id="spanPercentage">0%</span>
+      <div class="left-half-clipper">
+	<div class="first50-bar"></div>
+	<div class="value-bar"></div>
+      </div>
+    </div>
+
+    <script>
+     function updateProgressCircle(p) {
+       let className = `progress-circle p${p}`;
+       if (p >= 50) {
+	 className = className + ' over50';
+       }
+       document.getElementById('progress').className = className;
+       document.getElementById('spanPercentage').textContent = `${p}%`;
+     }
+
+     for (let p = 1; p <= 100; p++) {
+       setTimeout(function () {
+	 updateProgressCircle(p);
+       }, 1000 + 100 * p);
+     }
+    </script>
+  </body>
 </html>
